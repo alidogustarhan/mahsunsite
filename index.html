@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="MG TOUR — Dubai turları. Keşfet, deneyimle, hatırla." />
+  <title>MG TOUR — Dubai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #050505;
+      --black-soft: #121212;
+      --charcoal: #1a1a1a;
+      --gold: #c9a84c;
+      --gold-bright: #e8c96a;
+      --gold-dim: #8a7340;
+      --cream: #f0ebe3;
+      --muted: rgba(240, 235, 227, 0.68);
+      --font-display: "Cormorant Garamond", Georgia, serif;
+      --font-body: "Manrope", sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--cream);
+      background: var(--black);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .nav {
+      position: absolute;
+      inset: 0 0 auto;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem clamp(1rem, 4vw, 3rem);
+    }
+
+    .nav-logo {
+      display: block;
+      height: 64px;
+      width: auto;
+    }
+
+    .nav-logo img {
+      height: 100%;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-bright);
+    }
+
+    .nav-cta {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border-bottom: 1px solid var(--gold-dim);
+      padding-bottom: 0.2rem;
+      transition: color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .nav-cta:hover {
+      color: var(--gold-bright);
+      border-color: var(--gold-bright);
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-logo {
+        height: 52px;
+      }
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: flex-end;
+      isolation: isolate;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      animation: hero-drift 28s ease-in-out infinite alternate;
+      transform: scale(1.08);
+    }
+
+    @keyframes hero-drift {
+      from {
+        transform: scale(1.08) translate(0, 0);
+      }
+      to {
+        transform: scale(1.14) translate(-1.5%, -1%);
+      }
+    }
+
+    .hero-shade {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(5, 5, 5, 0.55) 0%,
+          rgba(5, 5, 5, 0.2) 32%,
+          rgba(5, 5, 5, 0.55) 68%,
+          rgba(5, 5, 5, 0.92) 100%
+        );
+    }
+
+    .hero-content {
+      width: min(680px, 100%);
+      padding: clamp(5rem, 12vh, 8rem) clamp(1.25rem, 4vw, 3.5rem) clamp(2.75rem, 7vh, 4.5rem);
+      animation: rise-in 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes rise-in {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-logo {
+      width: min(280px, 62vw);
+      height: auto;
+      margin-bottom: 1.35rem;
+      filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.45));
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(1.65rem, 3.8vw, 2.35rem);
+      line-height: 1.2;
+      max-width: 18ch;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero p {
+      font-weight: 300;
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      max-width: 34ch;
+      color: var(--muted);
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.5rem;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.55rem;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+
+    .btn:hover {
+      background: var(--gold-bright);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--cream);
+      border-bottom: 1px solid rgba(240, 235, 227, 0.4);
+      padding: 0.35rem 0;
+    }
+
+    .btn-ghost:hover {
+      background: transparent;
+      border-color: var(--gold-bright);
+      color: var(--gold-bright);
+      transform: none;
+    }
+
+    section {
+      padding: clamp(3.5rem, 9vh, 6.5rem) clamp(1.25rem, 4vw, 3.5rem);
+    }
+
+    .section-head {
+      max-width: 34rem;
+      margin-bottom: clamp(2rem, 5vh, 3.5rem);
+    }
+
+    .section-head h2 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      line-height: 1.12;
+      margin-bottom: 0.7rem;
+    }
+
+    .section-head p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 38ch;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition:
+        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Sections: solid bg only — no photo backgrounds */
+    .gallery,
+    .places,
+    .experience,
+    .contact,
+    .destinations {
+      background: var(--black);
+    }
+
+    .places {
+      background: var(--black-soft);
+    }
+
+    .experience {
+      background: var(--charcoal);
+    }
+
+    .gallery-track {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.65rem;
+    }
+
+    @media (max-width: 900px) {
+      .gallery-track {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .gallery-track figure {
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+      background: var(--charcoal);
+    }
+
+    .gallery-track figure:nth-child(2),
+    .gallery-track figure:nth-child(4) {
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .gallery-track figure:nth-child(2),
+      .gallery-track figure:nth-child(4) {
+        margin-top: 0;
+      }
+    }
+
+    .gallery-track img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .gallery-track figure:hover img {
+      transform: scale(1.05);
+    }
+
+    .places-mosaic {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 0.75rem;
+    }
+
+    .places-mosaic figure {
+      position: relative;
+      overflow: hidden;
+      min-height: 220px;
+      background: var(--charcoal);
+    }
+
+    .places-mosaic figure:first-child {
+      grid-row: 1 / 3;
+      min-height: 480px;
+    }
+
+    @media (max-width: 860px) {
+      .places-mosaic {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .places-mosaic figure:first-child {
+        grid-column: 1 / -1;
+        grid-row: auto;
+        min-height: 320px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .places-mosaic {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .places-mosaic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .places-mosaic figure:hover img {
+      transform: scale(1.04);
+    }
+
+    .places-mosaic figcaption {
+      position: absolute;
+      inset: auto 0 0;
+      padding: 2.25rem 1.25rem 1.25rem;
+      background: linear-gradient(transparent, rgba(5, 5, 5, 0.9));
+    }
+
+    .places-mosaic h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.35rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .places-mosaic p {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 28ch;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.5rem, 4vw, 3rem);
+      list-style: none;
+      counter-reset: step;
+    }
+
+    @media (max-width: 760px) {
+      .steps {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .steps li {
+      counter-increment: step;
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(201, 168, 76, 0.35);
+    }
+
+    .steps li::before {
+      content: "0" counter(step);
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      margin-bottom: 0.85rem;
+    }
+
+    .steps h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.35rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .steps p {
+      font-weight: 300;
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 28ch;
+    }
+
+    .dest-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+
+    @media (max-width: 760px) {
+      .dest-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .dest-row figure {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      background: var(--charcoal);
+    }
+
+    .dest-row img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .dest-row figure:hover img {
+      transform: scale(1.05);
+    }
+
+    .dest-row figcaption {
+      position: absolute;
+      inset: auto 0 0;
+      padding: 2rem 1.15rem 1.15rem;
+      background: linear-gradient(transparent, rgba(5, 5, 5, 0.92));
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+    }
+
+    .panorama {
+      padding: 0;
+      position: relative;
+      min-height: clamp(280px, 48vh, 460px);
+      overflow: hidden;
+      background: var(--charcoal);
+    }
+
+    .panorama img {
+      width: 100%;
+      height: 100%;
+      min-height: clamp(280px, 48vh, 460px);
+      object-fit: cover;
+      object-position: center 40%;
+    }
+
+    .panorama-copy {
+      position: absolute;
+      inset: auto 0 0;
+      padding: clamp(2rem, 5vh, 3.5rem) clamp(1.25rem, 4vw, 3.5rem);
+      background: linear-gradient(transparent, rgba(5, 5, 5, 0.88));
+      max-width: 36rem;
+    }
+
+    .panorama-copy h2 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      margin-bottom: 0.45rem;
+    }
+
+    .panorama-copy p {
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 36ch;
+    }
+
+    .contact {
+      border-top: 1px solid rgba(201, 168, 76, 0.2);
+    }
+
+    .contact-inner {
+      max-width: 640px;
+    }
+
+    .contact h2 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+    }
+
+    .contact-lead {
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 34ch;
+      margin-bottom: 1.75rem;
+    }
+
+    .contact-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      font-size: 1rem;
+      font-weight: 300;
+    }
+
+    .contact-meta a {
+      color: var(--gold);
+      width: fit-content;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.25s ease, color 0.25s ease;
+    }
+
+    .contact-meta a:hover {
+      color: var(--gold-bright);
+      border-color: var(--gold-bright);
+    }
+
+    footer {
+      padding: 1.35rem clamp(1.25rem, 4vw, 3.5rem);
+      background: var(--black);
+      border-top: 1px solid rgba(201, 168, 76, 0.15);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--muted);
+    }
+
+    .footer-logo {
+      height: 48px;
+      width: auto;
+    }
+
+    .footer-logo img {
+      height: 100%;
+      width: auto;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="nav-logo" href="#top" aria-label="MG TOUR ana sayfa">
+      <img src="assets/logo.png" alt="MG TOUR" width="180" height="180" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="#galeri">Galeri</a></li>
+      <li><a href="#yerler">Yerler</a></li>
+      <li><a href="#deneyim">Deneyim</a></li>
+      <li><a href="#iletisim">İletişim</a></li>
+    </ul>
+    <a class="nav-cta" href="#iletisim">İletişime geç</a>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-label="Dubai Marina ve JBR">
+      <div class="hero-media">
+        <img
+          src="assets/marina-sunset.jpg"
+          alt="Dubai Marina ve JBR sahil silüeti"
+          width="1400"
+          height="933"
+          fetchpriority="high"
+        />
+      </div>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="hero-content">
+        <img class="hero-logo" src="assets/logo.png" alt="MG TOUR — Keşfet, Deneyimle, Hatırla" width="320" height="320" />
+        <h1>Dubai’yi keşfedin, yaşayın, hatırlayın.</h1>
+        <p>Şehir turlarından çöl safariye — size özel Dubai deneyimleri.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#iletisim">Tur planla</a>
+          <a class="btn btn-ghost" href="#galeri">Görselleri incele</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery" id="galeri">
+      <div class="section-head reveal">
+        <h2>Dubai’nin ışığı</h2>
+        <p>Marina’dan sahile, ikonik yapılara uzanan bir görsel yolculuk.</p>
+      </div>
+      <div class="gallery-track">
+        <figure class="reveal">
+          <img src="assets/marina-sunset.jpg" alt="Dubai Marina ve JBR" width="900" height="1200" loading="lazy" />
+        </figure>
+        <figure class="reveal">
+          <img src="assets/marina-hero.jpg" alt="Ain Dubai ve JBR sahili" width="900" height="1200" loading="lazy" />
+        </figure>
+        <figure class="reveal">
+          <img src="assets/creek.jpg" alt="Burj Al Arab ve Palm Jumeirah" width="900" height="1200" loading="lazy" />
+        </figure>
+        <figure class="reveal">
+          <img src="assets/frame.jpg" alt="Burj Al Arab sahilden" width="900" height="1200" loading="lazy" />
+        </figure>
+      </div>
+    </section>
+
+    <section class="places" id="yerler">
+      <div class="section-head reveal">
+        <h2>Öne çıkan duraklar</h2>
+        <p>Her rota, Dubai’nin farklı bir yüzünü gösterir.</p>
+      </div>
+      <div class="places-mosaic">
+        <figure class="reveal">
+          <img src="assets/marina-sunset.jpg" alt="Dubai Marina ve JBR" width="1400" height="933" loading="lazy" />
+          <figcaption>
+            <h3>Dubai Marina &amp; JBR</h3>
+            <p>Sahil yürüyüşü, marina ışıkları ve şehrin modern ritmi.</p>
+          </figcaption>
+        </figure>
+        <figure class="reveal">
+          <img src="assets/marina-hero.jpg" alt="Ain Dubai" width="1200" height="800" loading="lazy" />
+          <figcaption>
+            <h3>Ain Dubai &amp; Bluewaters</h3>
+            <p>Dünyanın en büyük gözlem çarkı ve sahil manzarası.</p>
+          </figcaption>
+        </figure>
+        <figure class="reveal">
+          <img src="assets/creek.jpg" alt="Burj Al Arab ve Palm" width="1200" height="1600" loading="lazy" />
+          <figcaption>
+            <h3>Burj Al Arab &amp; Palm</h3>
+            <p>İkonik yelken ve palmiye adası manzarası.</p>
+          </figcaption>
+        </figure>
+        <figure class="reveal">
+          <img src="assets/frame.jpg" alt="Burj Al Arab" width="900" height="1200" loading="lazy" />
+          <figcaption>
+            <h3>Jumeirah sahili</h3>
+            <p>Turkuaz deniz ve lüks sahil molası.</p>
+          </figcaption>
+        </figure>
+        <figure class="reveal">
+          <img src="assets/skyline-night.jpg" alt="Dubai gece silüeti" width="900" height="600" loading="lazy" />
+          <figcaption>
+            <h3>Şehir ışıkları</h3>
+            <p>Gece Dubai’sinin enerjisi ve silüeti.</p>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="experience" id="deneyim">
+      <div class="section-head reveal">
+        <h2>Keşfet · Deneyimle · Hatırla</h2>
+        <p>Markamızın vaadi, turun her adımında hissedilir.</p>
+      </div>
+      <ol class="steps">
+        <li class="reveal">
+          <h3>Keşfet</h3>
+          <p>İlgi alanlarınıza göre Dubai rotasını birlikte çizeriz.</p>
+        </li>
+        <li class="reveal">
+          <h3>Deneyimle</h3>
+          <p>Rehberlik, transfer ve rezervasyonlarla yanınızdayız.</p>
+        </li>
+        <li class="reveal">
+          <h3>Hatırla</h3>
+          <p>Ömür boyu anlatılacak anılarla eve dönersiniz.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="destinations">
+      <div class="section-head reveal">
+        <h2>Burj Khalifa &amp; Downtown</h2>
+        <p>Dünyanın en yüksek binası ve şehir manzarası.</p>
+      </div>
+      <div class="dest-row">
+        <figure class="reveal">
+          <img src="assets/fountain.jpg" alt="Burj Khalifa ve Dubai Fountain" width="1000" height="1250" loading="lazy" />
+          <figcaption>Burj Khalifa</figcaption>
+        </figure>
+        <figure class="reveal">
+          <img src="assets/burj-closeup.jpg" alt="Burj Khalifa gökyüzüne doğru" width="800" height="1067" loading="lazy" />
+          <figcaption>Gökyüzü manzarası</figcaption>
+        </figure>
+        <figure class="reveal">
+          <img src="assets/garden.jpg" alt="Burj Khalifa gece" width="1000" height="1250" loading="lazy" />
+          <figcaption>Gece Downtown</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="panorama" aria-label="Burj Khalifa">
+      <img
+        src="assets/burj-khalifa.jpg"
+        alt="Burj Khalifa ve Dubai silüeti"
+        width="2400"
+        height="1600"
+        loading="lazy"
+      />
+      <div class="panorama-copy reveal">
+        <h2>Burj Khalifa</h2>
+        <p>Downtown’un kalbinde, unutulmaz bir şehir deneyimi.</p>
+      </div>
+    </section>
+
+    <section class="contact" id="iletisim">
+      <div class="contact-inner reveal">
+        <h2>Dubai turunuzu konuşalım</h2>
+        <p class="contact-lead">Doğrudan yazın; size özel planı birlikte netleştirelim.</p>
+        <div class="contact-meta">
+          <a href="mailto:merhaba@mgtour.com">merhaba@mgtour.com</a>
+          <a href="tel:+971500000000">+971 50 000 0000</a>
+          <a href="https://wa.me/971500000000" target="_blank" rel="noopener noreferrer">WhatsApp ile yazın</a>
+          <span>Dubai, Birleşik Arap Emirlikleri</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="footer-logo" href="#top" aria-label="MG TOUR">
+      <img src="assets/logo.png" alt="MG TOUR" width="120" height="120" />
+    </a>
+    <span>© 2026 MG TOUR · Keşfet · Deneyimle · Hatırla</span>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    );
+    reveals.forEach((el, i) => {
+      el.style.transitionDelay = `${Math.min(i % 4, 3) * 0.08}s`;
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
